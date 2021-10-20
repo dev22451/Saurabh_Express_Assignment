@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>My app</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/md5.js"></script>
+
+<script>
+	
+     function encrypt()
+	 {
+        var pass=document.getElementById('password').value;
+        var Cpass=document.getElementById('Cpassword').value;
+		
+		if(pass == "" && Cpass == "")
+		{
+		   document.getElementById('err').innerHTML='Error:Password is missing';
+		   return false;
+		}
+		else
+		{
+		    
+		   var hash = CryptoJS.MD5(pass);
+		   var Chash = CryptoJS.MD5(Cpass);
+		   document.getElementById('password').value=hash;
+		   document.getElementById('Cpassword').value=Chash;
+		  return true;
+		}
+	}
+</script>
+
+</head>
+<body>
+	<form class="form-signin" action="/registration" method="post" name="signin" id="signin">
+	First Name
+	  <input type="text" placeholder="FirstName" name="firstname" id="firstname" required><br>
+	Last Name
+  	  <input type="text" placeholder="LastName" name="lastname" required><br>
+  	Username
+  	  <input type="text" placeholder="UserName" name="username" required><br>
+  	Email
+  	  <input type="email" required placeholder="email" name="email"><br>
+  	Password
+  	  <input type="password"  required name="password" id="password" placeholder="Password" value="" /> <br>
+  	Confrim Password
+  	  <input type="password" required placeholder="ConfirmPassword" name="confirmpassword" id="Cpassword"><br>
+    <button type="submit" onclick="return encrypt()" >Submit</button> 
+</form>
+</body>
+</html>
